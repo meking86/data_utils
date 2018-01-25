@@ -2,8 +2,14 @@ from argmodule.ConfigReader  import ConfigReader
 import importlib
 import argparse
 
+def is_valid_type(parser,x):
+    lis = ['YAML','INI','JSON']
+    if (x in lis):
+        return(x)
+    else:
+        parser.error("Please give valid Type")
 parser = argparse.ArgumentParser("description='Used to get configuration file path and configuration file type'")
-parser.add_argument('--type','-t',required=True,help='Use to get configuration file type Need Type',dest='config_type')
+parser.add_argument('--type','-t',required=True,help='Use to get configuration file type Need Type',dest='config_type',type=lambda x: is_valid_type(parser,x))
 parser.add_argument('--path','-p',required=True,help='Use to get configutaion file path',dest='config_path')
 results = parser.parse_args()
 
@@ -19,8 +25,4 @@ func()
 
 def fun_when_not_find(self):
     print('Please provide a valid Type file to read ')
-#def is_valid_type(parser,x):
-#    lis = ['YAML','INI','JSON']
-#    if (x in lis):
-#        return(x)
 
