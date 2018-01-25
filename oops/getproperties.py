@@ -14,7 +14,7 @@ module = importlib.import_module('argmodule.ConfigReader')
 my_class= getattr(module, 'ConfigReader')
 my_instance = my_class()
 
-func = getattr(my_instance,'readerJSON','fun_when_not_find') 
+func = getattr(my_instance,'readerINI','fun_when_not_find') 
 func() 
 
 def fun_when_not_find(self):
